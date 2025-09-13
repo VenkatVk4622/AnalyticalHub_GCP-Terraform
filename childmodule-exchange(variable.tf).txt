@@ -1,0 +1,40 @@
+variable "project_id" {
+  description = "The project ID where the data exchange will be created"
+  type        = string
+}
+
+variable "location" {
+  description = "Region for the exchange"
+  type        = string
+}
+
+variable "exchange_id" {
+  description = "Unique ID for the data exchange"
+  type        = string
+}
+
+variable "display_name" {
+  description = "Display name for the data exchange"
+  type        = string
+}
+
+variable "description" {
+  description = "Description of the data exchange"
+  type        = string
+  default     = ""
+}
+
+variable "primary_contact" {
+  description = "Primary contact email for the data exchange"
+  type        = string
+}
+
+variable "iam_role" {
+  type        = string
+  description = "IAM role for exchange (e.g., roles/viewer, roles/analyticshub.viewer)"
+}
+
+variable "iam_members" {
+  type        = list(string)
+  description = "Members to grant exchange IAM permissions"
+}

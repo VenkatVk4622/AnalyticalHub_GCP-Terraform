@@ -1,0 +1,17 @@
+resource "google_bigquery_analytics_hub_data_exchange" "exchange" {
+  project          = var.project_id
+  location         = var.location
+  data_exchange_id = var.exchange_id
+  display_name     = var.display_name
+  description      = var.description
+  primary_contact  = var.primary_contact
+}
+
+# --- IAM Binding for Exchange ---
+resource "google_bigquery_analytics_hub_data_exchange_iam_binding" "binding" {
+  project          = var.project_id
+  location         = var.location
+  data_exchange_id = var.exchange_id
+  role             = var.iam_role
+  members          = var.iam_members
+}

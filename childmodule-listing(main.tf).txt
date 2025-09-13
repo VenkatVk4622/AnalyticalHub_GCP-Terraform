@@ -1,0 +1,23 @@
+resource "google_bigquery_analytics_hub_listing" "listing" {
+  project          = var.project_id
+  location         = var.location
+  data_exchange_id = var.exchange_id
+  listing_id       = var.listing_id
+  display_name     = var.display_name
+  description      = var.description
+  primary_contact  = var.primary_contact
+
+  bigquery_dataset {
+    dataset = "projects/${var.datasets_project}/datasets/${var.dataset_name}"
+  }
+}
+
+# # --- IAM Binding for Listing ---
+resource "google_bigquery_analytics_hub_listing_iam_binding" "binding" {
+  project          = var.project_id
+  location         = var.location
+  data_exchange_id = var.exchange_id
+  listing_id       = var.listing_id
+  role             = var.iam_role
+  members          = var.iam_members
+}
