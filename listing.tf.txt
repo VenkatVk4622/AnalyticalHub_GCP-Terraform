@@ -1,0 +1,19 @@
+# --- Create Listings ---
+module "analytics_hub_listings" {
+  for_each = { for ls in var.listings : ls.listing_id => ls }
+
+  source           = "./module/listing"
+  project_id       = each.value.project_id
+  location         = each.value.location
+  exchange_id      = each.value.exchange_id
+  listing_id       = each.value.listing_id
+  display_name     = each.value.display_name
+  description      = each.value.description
+  datasets_project = each.value.datasets_project
+  dataset_name     = each.value.dataset_name
+  primary_contact  = each.value.primary_contact
+
+  iam_role    = each.value.iam_role
+  iam_members = each.value.iam_members
+
+ }

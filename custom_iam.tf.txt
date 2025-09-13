@@ -1,0 +1,15 @@
+locals {
+  prj_member = [for eachmember in yamldecode(file("./custom-iam-project.yaml")) : {
+    "member"        = eachmember["member"]
+    "project_id"    = eachmember["project_id"]
+    "project_roles" = eachmember["project_roles"]
+  }]
+}
+
+module "project_role" {
+  source        = "git@bitbucket.org:whirpoolnardevops/whr-tf-modules.git//terraform-google-role-project?ref=main"
+  for_each      = { for eachmember in local.prj_member : "${eachmember.member}${eachmember.project_id}" => eachmember }
+  member        = each.value.member
+  project_id    = each.value.project_id
+  project_roles = each.value.project_roles
+}

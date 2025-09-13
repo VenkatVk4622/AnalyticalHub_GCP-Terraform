@@ -1,0 +1,17 @@
+# ===============================
+# PROJECT IAM BINDINGS
+# ===============================
+
+# Example: Group access for project roles
+- member: "group:<<group_email>>"             # e.g., group:admins@example.com
+  project_id: "<<project_id>>"                # e.g., my-project-id
+  project_roles:
+    - <<role_1>>                              # e.g., roles/compute.admin
+    - <<role_2>>                              # e.g., roles/iam.serviceAccountUser
+
+# Example: Service account access for project roles
+- member: "serviceAccount:<<sa_email>>"       # e.g., serviceAccount:my-sa@my-project.iam.gserviceaccount.com
+  project_id: "<<project_id>>"                # e.g., my-project-id
+  project_roles:
+    - <<role_1>>                              # e.g., roles/bigquery.admin
+    - <<role_2>>                              # e.g., roles/storage.objectAdmin

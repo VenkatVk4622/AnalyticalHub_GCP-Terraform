@@ -1,0 +1,10 @@
+module "project" {
+  source          = "git@bitbucket.org:whirpoolnardevops/whr-tf-modules.git//terraform-google-project?ref=main"
+  for_each        = { for eachproject in var.projects : eachproject.project_name => eachproject }
+  project_name    = each.key
+  project_id      = each.value.project_id
+  folder_id       = each.value.folder_id
+  billing_account = each.value.billing_account
+  labels          = each.value.labels
+  project_apis    = each.value.project_apis
+}

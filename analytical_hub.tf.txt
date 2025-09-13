@@ -1,0 +1,16 @@
+# --- Create Exchanges ---
+module "analytics_hub_exchanges" {
+  for_each = { for ex in var.exchanges : ex.exchange_id => ex }
+
+  source          = "./module/analytical_hub" # only exchange exists now
+  project_id      = each.value.project_id
+  location        = each.value.location
+  exchange_id     = each.value.exchange_id
+  display_name    = each.value.display_name
+  description     = each.value.description
+  primary_contact = each.value.primary_contact
+
+  iam_role    = each.value.iam_role
+  iam_members = each.value.iam_members
+}
+

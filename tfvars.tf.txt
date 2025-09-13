@@ -1,0 +1,86 @@
+# ===============================
+# PROJECT ATTRIBUTES
+# ===============================
+projects = [{
+  project_name    = "" # e.g., "my-project"
+  project_id      = "" # e.g., "my-project-id"
+  folder_id       = "" # e.g., "1234567890"
+  billing_account = "" # e.g., "XXXXXX-YYYYYY-ZZZZZZ"
+  project_apis = [
+    # "bigquery.googleapis.com",
+    # "analyticshub.googleapis.com",
+  ]
+  labels = {
+    name = "" # e.g., "my-project"
+  }
+}]
+
+# ===============================
+# SERVICE ACCOUNT ATTRIBUTES
+# ===============================
+sa = [{
+  sa_id        = "" # e.g., "my-service-account"
+  display_name = "" # e.g., "Service Account for XYZ"
+  project_id   = "" # e.g., "my-project-id"
+}]
+
+# ===============================
+# BIGQUERY DATASET ATTRIBUTES
+# ===============================
+bq_datasets = [
+  {
+    dataset_id                  = "" # e.g., "dataset_1"
+    dataset_name                = "" # e.g., "Dataset 1"
+    project_id                  = "" # e.g., "my-project-id"
+    description                 = "" # e.g., "Description of dataset"
+    location                    = "" # e.g., "us-east4"
+    default_table_expiration_ms = 0  # e.g., 604800000 for 7 days
+    dataset_labels = {
+      name = "" # e.g., "dataset_1"
+    }
+    access = []
+    role_bind_dataset = [{
+      role    = ""    # e.g., "roles/bigquery.dataViewer"
+      members = []    # e.g., ["user:abc@example.com"]
+    }]
+  }
+]
+
+# ===============================
+# ANALYTICS HUB EXCHANGE ATTRIBUTES
+# ===============================
+exchanges = [
+  {
+    project_id      = "" # e.g., "my-project-id"
+    location        = "" # e.g., "us-east4"
+    exchange_id     = "" # e.g., "exchange_1"
+    display_name    = "" # e.g., "Demo Exchange"
+    description     = "" # e.g., "Exchange for demo data"
+    primary_contact = "" # e.g., "owner@example.com"
+
+    # IAM binding
+    iam_role    = ""   # e.g., "roles/analyticshub.viewer"
+    iam_members = []   # e.g., ["group:admins@example.com"]
+  }
+]
+
+# ===============================
+# ANALYTICS HUB LISTING ATTRIBUTES
+# ===============================
+listings = [
+  {
+    project_id       = "" # e.g., "my-project-id"
+    location         = "" # e.g., "us-east4"
+    exchange_id      = "" # e.g., "exchange_1"
+    listing_id       = "" # e.g., "listing_1"
+    display_name     = "" # e.g., "Demo Listing"
+    description      = "" # e.g., "Description for listing"
+    datasets_project = "" # e.g., "my-project-id"
+    dataset_name     = "" # e.g., "dataset_1"
+    primary_contact  = "" # e.g., "owner@example.com"
+
+    # IAM binding
+    iam_role    = ""   # e.g., "roles/analyticshub.subscriber"
+    iam_members = []   # e.g., ["serviceAccount:xyz@my-project.iam.gserviceaccount.com"]
+  }
+]

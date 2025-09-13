@@ -1,0 +1,16 @@
+module "bq_dataset" {
+  source                      = "git@bitbucket.org:whirpoolnardevops/whr-tf-modules.git//terraform-google-bigquery-dataset?ref=main"
+  project_id                  = split("/", module.project[each.value.project_id].id)[1]
+  for_each                    = { for dataset in var.bq_datasets : dataset.dataset_id => dataset }
+  dataset_id                  = each.key
+  dataset_name                = each.value.dataset_name
+  description                 = each.value.description
+  location                    = each.value.location
+  default_table_expiration_ms = each.value.default_table_expiration_ms
+  dataset_labels              = each.value.dataset_labels
+  access                      = each.value.access
+  role_bind_dataset           = each.value.role_bind_dataset
+  roles                       = each.value.roles
+  authorized_datasets         = each.value.authorized_datasets
+  depends_on                  = [module.project]
+}
